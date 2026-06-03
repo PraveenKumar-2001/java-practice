@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Localstorage</title>
+    <style>
+        .ls
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            border: 2px solid green;
+        }
+        button{
+            padding: 4px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="ls">
+        <form action="" >
+            <label>name</label>
+            <br>
+            <input type="text" name="" id="local">
+
+            <div >
+                <button type="button" onclick="saveName()">save now</button>
+            </div>
+            <h3 id="output"></h3>
+
+        </form>
+    </div>
+    <script>
+        /* dispaly saved name */
+       window.onload = function(){
+            let saveName = localStorage.getItem("username");
+
+            if(saveName){
+                document.getElementById("local").value = saveName;
+                document.getElementById("output").innerText = "welcome, "+saveName;
+            }
+        };
+        function saveName(){
+            let name=document.getElementById("local").value;
+            localStorage.setItem("username",name);
+
+            document.getElementById("output").innerText ="welcome "+name
+
+        }
+
+
+    </script>
+    
+</body>
+</html>

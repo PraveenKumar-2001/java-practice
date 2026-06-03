@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>session storage</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        button{
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="count">0</h1>
+    
+
+    <button onclick="increaseCounter()">click</button>
+
+    <script>
+
+        let count=sessionStorage.getItem("counter");
+
+            if(count === null){
+                count =0;
+            }
+            document.getElementById("count").innerText =count;
+        function increaseCounter(){
+
+            count++;
+            sessionStorage.setItem("counter",count);
+            document.getElementById("count").innerText = count;
+            
+        }
+    </script>
+    
+</body>
+</html>

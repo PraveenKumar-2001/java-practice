@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cookies</title>
+    <style>
+        body{
+            transition: 0.3s;
+            text-align: center;
+            padding-top: 50px;
+        }
+        button{
+            padding: 10px;
+            margin: 10px;
+        }
+        .light{
+            background: white;
+            color: rgb(76, 221, 9);
+        }
+        .dark{
+            background: black;
+            color: rgb(243, 3, 3);
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h1> Choose your them</h1>
+    <div>
+        <button onclick="setTheme('light')">Ligth them </button>
+    <button onclick="setTheme('dark')">Dark them </button>
+    </div>
+</div>
+<script>
+    function setCookie(name,value,days){
+        let date =new Date();
+        date.setTime(date.getTime() +(days*24*60*60*100));
+
+        let expires = "expires="+date.toUTCString();
+
+        document.cookie=name+"="+value+";"+expires+";path=/";
+    }
+    // get cookie
+    function getCookie(name){
+        let cookieName = name+"=";
+        let cookie = document.cookie.split(";");
+        for(let cookie of cookies){
+            cookie =cookie.trim();
+
+            if(cookie.idexOf(cookieName) === 0){
+                return cookie.substring(cookieName.length);
+            }
+        }
+        return "";
+    }
+    // theme
+    function setTheme(theme){
+        document.body.className=theme;
+        setCookie("theme",theme,7);
+    }
+    // load theme
+    window.onload = function(){
+        let savedTheme = getCookie("theme");
+
+        if(savedTheme){
+            document.body.className = savedTheme;
+        }else{
+            document.body.className = "light";
+        }
+    };
+</script>
+    
+</body>
+</html>
